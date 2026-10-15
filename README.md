@@ -40,3 +40,12 @@ sub-path.
   `/ (root)`. Every push to `main` then publishes.
 - **DHM VPS (nginx):** check out the repo and serve it as static files, e.g.
   `location /exchange/ { alias /var/www/dhm-exchange/app/; }`.
+
+## Icon and social card
+
+`img/` holds the app icon (favicon, Apple touch icon, 192/512 for the web
+manifest, so "Add to Home Screen" works) and `og-image.png`, the 1200×630
+card shown when the link is shared. Both were rendered from HTML in the
+brand faces (Cormorant Garamond, Cinzel, Plus Jakarta Sans). The `og:` URLs
+in `index.html` are absolute and assume
+https://digitalheman-eng.github.io/exchange/ — change them if the page moves.

@@ -1,0 +1,98 @@
+@import './tokens.css';
+
+/* Base and components follow DHM Budget's app.css, trimmed to what this page uses. */
+
+*, *::before, *::after { box-sizing: border-box; }
+* { margin: 0; }
+html { -webkit-text-size-adjust: 100%; color-scheme: dark; }
+:root[data-theme='light'] { color-scheme: light; }
+@media (prefers-color-scheme: light) { :root:not([data-theme='dark']) { color-scheme: light; } }
+
+body {
+  min-height: 100vh;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  -webkit-font-smoothing: antialiased;
+}
+h1, h2 { font-family: var(--font-display); font-weight: 400; line-height: var(--leading-tight); text-wrap: balance; }
+p { text-wrap: pretty; }
+[hidden] { display: none !important; }
+:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 3px; border-radius: var(--radius); }
+::selection { background: var(--color-accent); color: var(--color-bg); }
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ---- Layout ---- */
+.wrap { width: 100%; max-width: 48rem; margin-inline: auto; padding-inline: var(--space-2); }
+@media (min-width: 48rem) { .wrap { padding-inline: var(--space-6); } }
+.page { padding-block: var(--space-4) var(--space-12); }
+.page > * + * { margin-top: var(--space-3); }
+.grid { display: grid; gap: var(--space-3); }
+@media (min-width: 40rem) { .grid--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.muted { color: var(--color-text-muted); }
+.small { font-size: var(--text-sm); }
+
+/* ---- Masthead ---- */
+.masthead { position: sticky; top: 0; z-index: 10; background: var(--color-bg-sunken); border-bottom: 1px solid var(--color-border); }
+.masthead__inner { display: flex; justify-content: space-between; align-items: center; gap: var(--space-2); padding-block: var(--space-2); }
+.wordmark { font-family: var(--font-heading-alt); letter-spacing: var(--tracking-wide); color: var(--color-text); white-space: nowrap; }
+.wordmark::after { content: ''; display: block; width: 2rem; height: 1px; margin-top: 2px; background: var(--color-accent); }
+
+/* ---- Headings ---- */
+.page-head h1 { font-size: var(--text-3xl); margin-top: var(--space-1); }
+.eyebrow, .card__title { font-size: var(--text-xs); letter-spacing: var(--tracking-wider); text-transform: uppercase; color: var(--color-text-muted); font-family: var(--font-body); font-weight: 500; }
+
+/* ---- Cards ---- */
+.card { background: var(--color-bg-raised); border: 1px solid var(--color-border); border-radius: var(--radius); padding: var(--space-3); min-width: 0; }
+@media (min-width: 48rem) { .card { padding: var(--space-4); } }
+.card > * + * { margin-top: var(--space-2); }
+.card--hero { border-color: var(--color-accent-line); }
+
+.figure { font-family: var(--font-display); font-size: var(--text-3xl); line-height: 1.1; font-variant-numeric: tabular-nums; overflow-wrap: anywhere; }
+.figure--secondary { font-size: var(--text-2xl); color: var(--color-text-muted); }
+.figure .eq { color: var(--color-text-faint); }
+.card--hero .figure #eur-to-local { color: var(--color-accent); }
+
+/* ---- Forms ---- */
+label { display: block; font-size: var(--text-sm); color: var(--color-text-muted); margin-bottom: 0.25rem; }
+input[type='text'], select {
+  width: 100%; font: inherit; color: var(--color-text); background: var(--color-bg); border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius); padding: 0.55rem 0.65rem; min-height: 2.75rem;
+}
+input:focus, select:focus { outline: 2px solid var(--color-accent); outline-offset: 0; }
+.hint { font-size: var(--text-xs); color: var(--color-text-faint); margin-top: 0.2rem; }
+.fields { display: grid; gap: var(--space-2); }
+@media (min-width: 40rem) { .fields--2 { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.code { font-family: var(--font-mono); font-size: var(--text-xs); color: var(--color-text-faint); margin-left: 0.3em; }
+
+.btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4em; font: inherit; font-size: var(--text-sm); letter-spacing: 0.02em; padding: 0.55rem 1rem; min-height: 2.75rem; border-radius: var(--radius); border: 1px solid var(--color-accent); background: var(--color-accent); color: var(--color-bg); cursor: pointer; }
+.btn:hover { background: var(--color-accent-hover); border-color: var(--color-accent-hover); }
+.btn--ghost { background: transparent; color: var(--color-accent); border-color: var(--color-accent-line); }
+.btn--ghost:hover { background: var(--color-accent-dim); color: var(--color-accent); }
+
+/* ---- Calculator ---- */
+.calc__row { display: grid; grid-template-columns: minmax(0, 1fr); gap: var(--space-2); align-items: end; }
+@media (min-width: 40rem) { .calc__row { grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr); } }
+.calc input { font-family: var(--font-display); font-size: var(--text-2xl); min-height: 3.5rem; font-variant-numeric: tabular-nums; }
+.calc__clear { min-height: 3.5rem; }
+
+.chips { display: grid; grid-template-columns: repeat(auto-fill, minmax(7.5rem, 1fr)); gap: var(--space-1); }
+.chip { font: inherit; font-size: var(--text-sm); min-height: 2.75rem; padding: 0.4rem; border: 1px solid var(--color-border-strong); background: var(--color-bg); color: var(--color-text); border-radius: var(--radius); cursor: pointer; font-variant-numeric: tabular-nums; }
+.chip:hover, .chip:focus-visible { border-color: var(--color-accent); background: var(--color-accent-dim); }
+
+.settings__actions { display: flex; align-items: center; }
+@media (min-width: 40rem) { .settings__actions { padding-top: 1.6rem; align-items: flex-start; } }
+
+/* ---- Notices ---- */
+.notice { border: 1px solid var(--color-border-strong); border-left-width: 3px; padding: var(--space-2); border-radius: var(--radius); font-size: var(--text-sm); background: var(--color-bg-raised); }
+.notice--ok { border-left-color: var(--color-positive); }
+.notice--warning { border-left-color: var(--color-warning); background: var(--color-warning-dim); }
+.notice--error { border-left-color: var(--color-danger); background: var(--color-danger-dim); }
+.notice--info { border-left-color: var(--color-accent); }
+.footnote { max-width: var(--measure); }
+@media (max-width: 39.99rem) { .calc__clear { order: 3; justify-self: start; min-height: 2.75rem; } }
+@media (max-width: 29.99rem) { #updated { display: none; } }

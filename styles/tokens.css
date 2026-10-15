@@ -1,0 +1,144 @@
+/*
+ * Shared DHM design tokens.
+ *
+ * The variable NAMES are the contract shared with digitalheman.com, Pension
+ * Room, Identity DHM and the shop sites — same structure, same type stack,
+ * same warm near-black ground. The VALUES are this app's own. The accent is
+ * Pension Room's ledger blue (#7f9dc4): both are tools that deal in money, and
+ * they should read as the same kind of object.
+ *
+ * LIGHT THEME. The PRD asks for light and dark. Dark is the family default;
+ * light follows the system preference unless the person picked one in
+ * Settings (html[data-theme]). Status and text colours are re-derived for the
+ * cream ground, not inverted — computed, each clears WCAG AA 4.5:1 on both
+ * the card (#fbf8f3) and the page ground (#f4efe7):
+ *   text #1f1b16 16.2 / 15.0 · muted #5d5448 7.0 / 6.5 · faint #6f6558 5.4 / 5.0
+ *   accent #2f5f93 6.2 / 5.8 · positive #2e6b35 6.1 / 5.6
+ *   warning #8a5a00 5.6 / 5.2 · danger #a8321f 6.3 / 5.8
+ *
+ * NO WEBFONTS are loaded (see the CSP note in server.js). The brand faces lead
+ * each stack and are used where installed; the fallbacks carry the page.
+ */
+
+:root {
+  /* ---- Color ---- */
+  --color-bg: #0d0c0a;
+  --color-bg-raised: #14120f;
+  --color-bg-sunken: #090807;
+  --color-text: #e6e0d6;
+  --color-text-muted: #a39a8c;
+  --color-surface: #e4ddd4;
+  --color-surface-ink: #1a1612;
+
+  /* Ledger blue. */
+  --color-accent: #7f9dc4;
+  --color-accent-hover: #9db8da;
+  --color-accent-dim: rgba(127, 157, 196, 0.14);
+  --color-accent-line: rgba(127, 157, 196, 0.35);
+
+  --color-border: rgba(180, 140, 90, 0.25);
+  --color-border-strong: rgba(180, 140, 90, 0.45);
+
+  /* --color-muted is a NON-TEXT tone, shared with the rest of the family,
+   * where it is the scrollbar thumb. At 1.55:1 on --color-bg it is very nearly
+   * invisible, so it may only ever be used for chrome and chart fills.
+   * --color-text-faint (4.58:1, WCAG AA) is the dimmest tone text is allowed
+   * to use — placeholders and the like. */
+  --color-muted: #3a3228;
+  --color-text-faint: #847968;
+
+  /* ---- Status ---- */
+  --color-positive: #8fbf8a;
+  --color-warning: #d9ab5f;
+  --color-warning-dim: rgba(217, 171, 95, 0.12);
+  --color-danger: #e08472;
+  --color-danger-dim: rgba(224, 132, 114, 0.12);
+
+  /* ---- Type ---- */
+  --font-display: 'Cormorant Garamond', 'Iowan Old Style', Georgia, 'Times New Roman', serif;
+  --font-heading-alt: 'Cinzel', Georgia, serif;
+  --font-body: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  /* Tabular figures line up in the money columns; the brand faces do not carry
+     a usable monospace, so the numeric tables use a real mono stack. */
+  --font-mono: ui-monospace, 'SF Mono', 'JetBrains Mono', Menlo, Consolas, monospace;
+
+  /* Type scale — 1.25 minor third, fluid between 380px and 1200px viewports. */
+  --text-xs: 0.79rem;
+  --text-sm: 0.889rem;
+  --text-base: 1rem;
+  --text-lg: clamp(1.125rem, 0.5vw + 1rem, 1.25rem);
+  --text-xl: clamp(1.35rem, 1vw + 1.1rem, 1.563rem);
+  --text-2xl: clamp(1.7rem, 1.8vw + 1.2rem, 1.953rem);
+  --text-3xl: clamp(2.1rem, 3vw + 1.3rem, 3.052rem);
+  --text-4xl: clamp(2.6rem, 5vw + 1.4rem, 4.2rem);
+
+  --leading-tight: 1.15;
+  --leading-normal: 1.6;
+  --tracking-wide: 0.08em;
+  --tracking-wider: 0.18em;
+
+  /* ---- Space ---- */
+  --space-unit: 0.5rem;
+  --space-1: var(--space-unit);
+  --space-2: calc(var(--space-unit) * 2);
+  --space-3: calc(var(--space-unit) * 3);
+  --space-4: calc(var(--space-unit) * 4);
+  --space-6: calc(var(--space-unit) * 6);
+  --space-8: calc(var(--space-unit) * 8);
+  --space-12: calc(var(--space-unit) * 12);
+  --space-16: calc(var(--space-unit) * 16);
+
+  /* ---- Layout ---- */
+  --measure: 62ch;
+  --content-max: 72rem;
+  --radius: 2px;
+  --transition: 180ms ease;
+}
+
+:root[data-theme='light'] {
+  --color-bg: #f4efe7;
+  --color-bg-raised: #fbf8f3;
+  --color-bg-sunken: #ebe4d8;
+  --color-text: #1f1b16;
+  --color-text-muted: #5d5448;
+  --color-surface: #1a1612;
+  --color-surface-ink: #f4efe7;
+  --color-accent: #2f5f93;
+  --color-accent-hover: #234a74;
+  --color-accent-dim: rgba(47, 95, 147, 0.1);
+  --color-accent-line: rgba(47, 95, 147, 0.35);
+  --color-border: rgba(120, 90, 50, 0.22);
+  --color-border-strong: rgba(120, 90, 50, 0.42);
+  --color-muted: #d8cfc1;
+  --color-text-faint: #6f6558;
+  --color-positive: #2e6b35;
+  --color-warning: #8a5a00;
+  --color-warning-dim: rgba(138, 90, 0, 0.1);
+  --color-danger: #a8321f;
+  --color-danger-dim: rgba(168, 50, 31, 0.08);
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme='dark']) {
+    --color-bg: #f4efe7;
+    --color-bg-raised: #fbf8f3;
+    --color-bg-sunken: #ebe4d8;
+    --color-text: #1f1b16;
+    --color-text-muted: #5d5448;
+    --color-surface: #1a1612;
+    --color-surface-ink: #f4efe7;
+    --color-accent: #2f5f93;
+    --color-accent-hover: #234a74;
+    --color-accent-dim: rgba(47, 95, 147, 0.1);
+    --color-accent-line: rgba(47, 95, 147, 0.35);
+    --color-border: rgba(120, 90, 50, 0.22);
+    --color-border-strong: rgba(120, 90, 50, 0.42);
+    --color-muted: #d8cfc1;
+    --color-text-faint: #6f6558;
+    --color-positive: #2e6b35;
+    --color-warning: #8a5a00;
+    --color-warning-dim: rgba(138, 90, 0, 0.1);
+    --color-danger: #a8321f;
+    --color-danger-dim: rgba(168, 50, 31, 0.08);
+  }
+}

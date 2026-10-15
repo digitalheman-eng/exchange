@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src 'self' https://api.frankfurter.app https://open.er-api.com https://cdn.jsdelivr.net https://api.bigdatacloud.net https://get.geojs.io; base-uri 'none'; form-action 'none'; object-src 'none'">
+  <meta name="referrer" content="no-referrer">
+  <meta name="color-scheme" content="dark light">
+  <meta name="description" content="The euro exchange rate for wherever you are, with a quick calculator.">
+  <title>Exchange · DHM</title>
+  <link rel="icon" href="icon.svg" type="image/svg+xml">
+  <link rel="stylesheet" href="styles/app.css">
+  <script src="js/countries.js" defer></script>
+  <script src="js/app.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <div class="wrap masthead__inner">
+      <span class="wordmark">DHM Exchange</span>
+      <span class="eyebrow" id="updated"></span>
+    </div>
+  </header>
+
+  <main class="wrap page">
+    <div class="page-head">
+      <p class="eyebrow" id="where">Finding where you are…</p>
+      <h1 id="title">Euro exchange rate</h1>
+    </div>
+
+    <div class="notice notice--info" id="status" role="status">Asking your browser for your location…</div>
+
+    <section class="grid grid--2 rates" aria-label="Exchange rate" id="rates" hidden>
+      <div class="card card--hero">
+        <p class="card__title">One euro</p>
+        <p class="figure"><span class="num-lead">€1</span> <span class="eq">=</span> <span id="eur-to-local"></span></p>
+      </div>
+      <div class="card">
+        <p class="card__title" id="one-local-title">One local</p>
+        <p class="figure figure--secondary"><span id="local-one"></span> <span class="eq">=</span> <span id="local-to-eur"></span></p>
+      </div>
+    </section>
+
+    <section class="card calc" aria-labelledby="calc-title" id="calc" hidden>
+      <h2 class="card__title" id="calc-title">Calculator</h2>
+      <div class="calc__row">
+        <div class="field">
+          <label for="amount-eur">Euro <span class="code">EUR</span></label>
+          <input id="amount-eur" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+        </div>
+        <button type="button" class="btn btn--ghost calc__clear" id="clear">Clear</button>
+        <div class="field">
+          <label for="amount-local"><span id="local-name">Local</span> <span class="code" id="local-code"></span></label>
+          <input id="amount-local" type="text" inputmode="decimal" autocomplete="off" placeholder="0">
+        </div>
+      </div>
+      <div class="chips" id="quick" aria-label="Quick amounts"></div>
+    </section>
+
+    <section class="card settings" aria-labelledby="settings-title">
+      <h2 class="card__title" id="settings-title">Currency</h2>
+      <div class="fields fields--2">
+        <div class="field">
+          <label for="currency">Show euros against</label>
+          <select id="currency"></select>
+          <p class="hint">Picked from your location. Choose another to override it.</p>
+        </div>
+        <div class="field settings__actions">
+          <button type="button" class="btn btn--ghost" id="relocate">Use my location again</button>
+        </div>
+      </div>
+    </section>
+
+    <p class="small muted footnote" id="source"></p>
+  </main>
+</body>
+</html>
